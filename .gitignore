@@ -22,3 +22,5 @@
 
 # ignore node modules
 /node_modules
+
+user_stories.md
