@@ -24,3 +24,5 @@
 /node_modules
 
 user_stories.md
+
+.coveralls.yml
