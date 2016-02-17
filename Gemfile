@@ -18,11 +18,15 @@ group :development, :test do
 end
 
 group :test do
+  gem 'poltergeist'
+  gem 'selenium-webdriver'
+  gem 'capybara'
   gem 'rspec-rails'
-  gem 'capybara-rails'
+  gem 'factory_girl_rails'
 end
 
 group :development do
+  gem 'react-redux'
   gem 'web-console', '~> 2.0'
   gem 'spring'
 end

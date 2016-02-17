@@ -1,0 +1,30 @@
+{
+  "RSpec": {
+    "coverage": {
+      "/Users/Nathan/Documents/projects/rails/saver/app/models/place.rb": [
+        1,
+        1,
+        null
+      ],
+      "/Users/Nathan/Documents/projects/rails/saver/app/models/category.rb": [
+        1,
+        1,
+        null
+      ],
+      "/Users/Nathan/Documents/projects/rails/saver/app/controllers/test_controller.rb": [
+        1,
+        1,
+        null,
+        null
+      ],
+      "/Users/Nathan/Documents/projects/rails/saver/app/controllers/application_controller.rb": [
+        1,
+        null,
+        null,
+        1,
+        null
+      ]
+    },
+    "timestamp": 1455663941
+  }
+}

@@ -46,33 +46,92 @@
 
 	'use strict';
 
-	var _react = __webpack_require__(1);
-
-	var _react2 = _interopRequireDefault(_react);
+	var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
 
 	var _jquery = __webpack_require__(158);
 
 	var _jquery2 = _interopRequireDefault(_jquery);
 
+	var _react = __webpack_require__(1);
+
+	var _react2 = _interopRequireDefault(_react);
+
 	var _reactDom = __webpack_require__(159);
 
 	var _reactDom2 = _interopRequireDefault(_reactDom);
 
-	var _test = __webpack_require__(160);
-
-	var _test2 = _interopRequireDefault(_test);
-
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
-	// import TopLevelReactComponent Here
+	function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
 
-	// call top level react component here
+	function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
+
+	function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
+
+	var PlacesBox = function (_React$Component) {
+	  _inherits(PlacesBox, _React$Component);
+
+	  function PlacesBox(props) {
+	    _classCallCheck(this, PlacesBox);
+
+	    var _this = _possibleConstructorReturn(this, Object.getPrototypeOf(PlacesBox).call(this, props));
+
+	    _this.state = { data: [] };
+	    return _this;
+	  }
+
+	  _createClass(PlacesBox, [{
+	    key: 'componentDidMount',
+	    value: function componentDidMount() {
+	      this.getPlacesFromServer();
+	      setInterval(this.getPlacesFromServer(), this.props.pollInterval);
+	    }
+	  }, {
+	    key: 'getPlacesFromServer',
+	    value: function getPlacesFromServer() {
+	      _jquery2.default.ajax({
+	        url: '/api/places',
+	        context: (0, _jquery2.default)("#content"),
+	        success: function (data) {
+	          this.setState({ data: data });
+	        }.bind(this),
+	        error: function (err) {
+	          console.error(this.props.url, status, err.toString());
+	        }.bind(this)
+	      });
+	    }
+	  }, {
+	    key: 'render',
+	    value: function render() {
+	      var placesNodes = this.state.data.map(function (place) {
+	        return _react2.default.createElement(
+	          'li',
+	          { key: place.id },
+	          'Name: ',
+	          place.name,
+	          _react2.default.createElement('br', null),
+	          'Neighborhood: ',
+	          place.neighborhood,
+	          _react2.default.createElement('br', null),
+	          'Category: ',
+	          place.category.name,
+	          _react2.default.createElement('br', null),
+	          _react2.default.createElement('br', null)
+	        );
+	      });
+	      return _react2.default.createElement(
+	        'ul',
+	        null,
+	        placesNodes
+	      );
+	    }
+	  }]);
+
+	  return PlacesBox;
+	}(_react2.default.Component);
+
 	(0, _jquery2.default)(document).ready(function () {
-	  _reactDom2.default.render(_react2.default.createElement(
-	    'h1',
-	    null,
-	    'Hello World from React!'
-	  ), document.getElementById("content"));
+	  (0, _reactDom.render)(_react2.default.createElement(PlacesBox, { url: '/api/places', pollInterval: 2000 }), document.getElementById("content"));
 	});
 
 /***/ },
@@ -29512,18 +29571,6 @@
 
 	module.exports = __webpack_require__(3);
 
-
-/***/ },
-/* 160 */
-/***/ function(module, exports) {
-
-	"use strict";
-
-	function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
-
-	var Test = function Test() {
-	  _classCallCheck(this, Test);
-	};
 
 /***/ }
 /******/ ]);
