@@ -26,7 +26,6 @@ group :test do
 end
 
 group :development do
-  gem 'react-redux'
   gem 'web-console', '~> 2.0'
   gem 'spring'
 end

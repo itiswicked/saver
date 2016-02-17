@@ -35,6 +35,8 @@ class PlacesBox extends React.Component {
           <br />
           Neighborhood: {place.neighborhood}
           <br />
+          Description: {place.description}
+          <br />
           Category: {place.category.name}
           <br /><br />
         </li>
