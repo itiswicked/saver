@@ -21,8 +21,10 @@ group :test do
   gem 'poltergeist'
   gem 'selenium-webdriver'
   gem 'capybara'
+  gem 'capybara-webkit'
   gem 'rspec-rails'
   gem 'factory_girl_rails'
+  gem 'launchy'
 end
 
 group :development do

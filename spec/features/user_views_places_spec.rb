@@ -1,15 +1,19 @@
 require 'rails_helper'
 
-feature 'user views places', %{
-  - [ ] View saved places card
-  - [ ] clicking on a place expands card and displays more info.
-}, js: true do
+feature 'user views places', js: true do
+# [ ] View saved places card
+# [ ] clicking on a place expands card and displays more info.
 
-  let(:place1) { FactoryGirl.create(:place) }
-  let(:place2) { FactoryGirl.create(:place) }
+  let!(:place1) { FactoryGirl.create(:place) }
+  let!(:place2) { FactoryGirl.create(:place) }
+
+  before(:each) do
+    Capybara.current_driver = Capybara.javascript_driver
+  end
 
   scenario 'successfully' do
     visit root_path
+
     [place1, place2].each do |place|
       expect(page).to have_content place.name
       expect(page).to have_content place.neighborhood

@@ -23,3 +23,8 @@ RSpec.configure do |config|
   config.filter_rails_from_backtrace!
   config.include FactoryGirl::Syntax::Methods
 end
+
+Capybara.configure do |config|
+  config.default_max_wait_time = 6
+  Capybara.javascript_driver = :webkit
+end

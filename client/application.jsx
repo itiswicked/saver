@@ -18,34 +18,34 @@ class PlacesBox extends React.Component {
     $.ajax({
       url: '/api/places',
       context: $("#content"),
-      success: function(data) {
+      success: data => {
         this.setState({data: data});
-      }.bind(this),
-      error: function(err) {
+      },
+      error: err => {
         console.error(this.props.url, status, err.toString());
-      }.bind(this)
+      }
     });
   }
 
   render() {
     var placesNodes = this.state.data.map(place => {
       return(
-        <li key={place.id}>
-          Name: {place.name}
+        <article className="place" key={place.id}>
+          <h3>{place.name}</h3>
           <br />
-          Neighborhood: {place.neighborhood}
+          <span>Neighborhood: {place.neighborhood}</span>
           <br />
-          Description: {place.description}
+          <span>Description: {place.description}</span>
           <br />
-          Category: {place.category.name}
+          <span>Category: {place.category.name}</span>
           <br /><br />
-        </li>
+        </article>
       )
     });
     return(
-      <ul>
+      <div className="places-box">
         {placesNodes}
-      </ul>
+      </div>
     );
   }
 }
