@@ -1,5 +1,7 @@
 {
-  "engines": { "node": "5.0.0" },
+  "engines": {
+    "node": "5.0.0"
+  },
   "dependencies": {
     "6to5-core": "^3.6.5",
     "6to5-loader": "^3.0.0",
@@ -10,6 +12,11 @@
     "jquery": "^2.2.0",
     "react": "^0.14.7",
     "react-dom": "^0.14.7",
+    "react-redux": "^4.4.0",
+    "redux": "^3.3.1",
     "webpack": "^1.12.13"
+  },
+  "devDependencies": {
+    "redux-devtools": "^3.1.1"
   }
 }

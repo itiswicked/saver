@@ -1,16 +1,58 @@
-import React from 'react';
 import $ from 'jquery';
-import ReactDOM from 'react-dom'
+import React from 'react';
+import ReactDOM from 'react-dom';
 import {render} from 'react-dom';
-import Test from './test.js';
 
+class PlacesBox extends React.Component {
+  constructor(props) {
+    super(props)
+    this.state = {data: []}
+  }
 
-// import TopLevelReactComponent Here
+  componentDidMount() {
+    this.getPlacesFromServer();
+    setInterval(this.getPlacesFromServer(), this.props.pollInterval)
+  }
 
-// call top level react component here
+  getPlacesFromServer() {
+    $.ajax({
+      url: '/api/places',
+      context: $("#content"),
+      success: data => {
+        this.setState({data: data});
+      },
+      error: err => {
+        console.error(this.props.url, status, err.toString());
+      }
+    });
+  }
+
+  render() {
+    var placesNodes = this.state.data.map(place => {
+      return(
+        <article className="place" key={place.id}>
+          <h3>{place.name}</h3>
+          <br />
+          <span>Neighborhood: {place.neighborhood}</span>
+          <br />
+          <span>Description: {place.description}</span>
+          <br />
+          <span>Category: {place.category.name}</span>
+          <br /><br />
+        </article>
+      )
+    });
+    return(
+      <div className="places-box">
+        {placesNodes}
+      </div>
+    );
+  }
+}
+
 $(document).ready(function() {
-  ReactDOM.render(
-    <h1>Hello World from React!</h1>,
+  render(
+    <PlacesBox url='/api/places' pollInterval={2000} />,
     document.getElementById("content")
   );
 });
