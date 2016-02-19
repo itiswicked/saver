@@ -24,7 +24,4 @@ RSpec.configure do |config|
   config.include FactoryGirl::Syntax::Methods
 end
 
-Capybara.configure do |config|
-  config.default_max_wait_time = 6
-  Capybara.javascript_driver = :webkit
-end
+Capybara.javascript_driver = :poltergeist

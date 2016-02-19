@@ -7,13 +7,9 @@ feature 'user views places', js: true do
   let!(:place1) { FactoryGirl.create(:place) }
   let!(:place2) { FactoryGirl.create(:place) }
 
-  before(:each) do
-    Capybara.current_driver = Capybara.javascript_driver
-  end
-
   scenario 'successfully' do
     visit root_path
-
+    
     [place1, place2].each do |place|
       expect(page).to have_content place.name
       expect(page).to have_content place.neighborhood
