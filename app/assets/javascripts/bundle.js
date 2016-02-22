@@ -74,6 +74,8 @@
 	  function PlacesBox(props) {
 	    _classCallCheck(this, PlacesBox);
 
+	    debugger;
+
 	    var _this = _possibleConstructorReturn(this, Object.getPrototypeOf(PlacesBox).call(this, props));
 
 	    _this.state = { data: [] };
@@ -86,6 +88,11 @@
 	      this.getPlacesFromServer();
 	      setInterval(this.getPlacesFromServer(), this.props.pollInterval);
 	    }
+
+	    // componentWillUnmount() {
+	    //   this.clearInterval(this.interval);
+	    // }
+
 	  }, {
 	    key: 'getPlacesFromServer',
 	    value: function getPlacesFromServer() {

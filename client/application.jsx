@@ -5,14 +5,19 @@ import {render} from 'react-dom';
 
 class PlacesBox extends React.Component {
   constructor(props) {
+    debugger;
     super(props)
     this.state = {data: []}
   }
 
   componentDidMount() {
     this.getPlacesFromServer();
-    setInterval(this.getPlacesFromServer(), this.props.pollInterval)
+    setInterval(this.getPlacesFromServer(), this.props.pollInterval);
   }
+
+  // componentWillUnmount() {
+  //   this.clearInterval(this.interval);
+  // }
 
   getPlacesFromServer() {
     $.ajax({

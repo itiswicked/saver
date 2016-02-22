@@ -11,6 +11,8 @@
 // about supported directives.
 //
 
+//= require_self
+//= require bundle
 if (!Function.prototype.bind) {
   Function.prototype.bind = function(oThis) {
     if (typeof this !== 'function') {
@@ -38,6 +40,3 @@ if (!Function.prototype.bind) {
     return fBound;
   };
 }
-//= require jquery
-//= require jquery_ujs
-//= require bundle.js
