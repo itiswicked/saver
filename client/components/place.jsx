@@ -12,7 +12,6 @@ export default class Place extends React.Component {
     return(
       <article className="place">
         <h3>{this.state.data.name}</h3>
-        <br />
         <span>Neighborhood: {this.state.data.neighborhood}</span>
         <br />
         <span>Description: {this.state.data.description}</span>

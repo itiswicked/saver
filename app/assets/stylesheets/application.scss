@@ -16,14 +16,21 @@
 
 @import url(https://fonts.googleapis.com/css?family=Raleway:200);
 
+$blue: #08f;
+$text-gray: #333;
+$hover-background-color: #f7f7f7;
+
+$box-shadow: 0 0 22px 0 rgba(181, 181, 181, 1);
+$box-shadow-hover: 0 0 40px 0 rgba(181, 181, 181, 1);
+
 body {
-  color: gray;
+  color: $text-gray;
   font-family: 'Raleway', sans-serif;
 }
 
 .title {
   text-align: center;
-  color: blue;
+  color: $text-gray;
 }
 
 #content {
@@ -32,11 +39,18 @@ body {
 }
 
 h3 {
-  margin: 0 0;
+  margin: 5px 0;
 }
 
 .place {
-  margin: 2px;
-  border: 1px solid gray;
+  box-shadow: $box-shadow;
+  border-bottom: 2px solid $blue;
+  margin: 20px;
   padding: 5px;
+
+  &:hover {
+    box-shadow: $box-shadow-hover;
+    background-color: $hover-background-color;
+    transition: 0.25s ease-in-out;
+  }
 }
