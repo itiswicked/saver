@@ -17,11 +17,14 @@ ActiveRecord::Migration.maintain_test_schema!
 Coveralls.wear!
 
 RSpec.configure do |config|
-  config.fixture_path = "#{::Rails.root}/spec/fixtures"
-  config.use_transactional_fixtures = true
   config.infer_spec_type_from_file_location!
   config.filter_rails_from_backtrace!
   config.include FactoryGirl::Syntax::Methods
+
+  config.before(:each) do
+    Place.destroy_all
+    Category.destroy_all
+  end
 end
 
 Capybara.javascript_driver = :poltergeist

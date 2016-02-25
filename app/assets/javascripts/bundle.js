@@ -46,8 +46,6 @@
 
 	'use strict';
 
-	var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
-
 	var _jquery = __webpack_require__(1);
 
 	var _jquery2 = _interopRequireDefault(_jquery);
@@ -60,105 +58,14 @@
 
 	var _reactDom2 = _interopRequireDefault(_reactDom);
 
+	var _placesBox = __webpack_require__(160);
+
+	var _placesBox2 = _interopRequireDefault(_placesBox);
+
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
-	function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
-
-	function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
-
-	function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
-
-	var PlacesBox = function (_React$Component) {
-	  _inherits(PlacesBox, _React$Component);
-
-	  function PlacesBox(props) {
-	    _classCallCheck(this, PlacesBox);
-
-	    debugger;
-
-	    var _this = _possibleConstructorReturn(this, Object.getPrototypeOf(PlacesBox).call(this, props));
-
-	    _this.state = { data: [] };
-	    return _this;
-	  }
-
-	  _createClass(PlacesBox, [{
-	    key: 'componentDidMount',
-	    value: function componentDidMount() {
-	      this.getPlacesFromServer();
-	      setInterval(this.getPlacesFromServer(), this.props.pollInterval);
-	    }
-
-	    // componentWillUnmount() {
-	    //   this.clearInterval(this.interval);
-	    // }
-
-	  }, {
-	    key: 'getPlacesFromServer',
-	    value: function getPlacesFromServer() {
-	      var _this2 = this;
-
-	      _jquery2.default.ajax({
-	        url: '/api/places',
-	        context: (0, _jquery2.default)("#content"),
-	        success: function success(data) {
-	          _this2.setState({ data: data });
-	        },
-	        error: function error(err) {
-	          console.error(_this2.props.url, status, err.toString());
-	        }
-	      });
-	    }
-	  }, {
-	    key: 'render',
-	    value: function render() {
-	      var placesNodes = this.state.data.map(function (place) {
-	        return _react2.default.createElement(
-	          'article',
-	          { className: 'place', key: place.id },
-	          _react2.default.createElement(
-	            'h3',
-	            null,
-	            place.name
-	          ),
-	          _react2.default.createElement('br', null),
-	          _react2.default.createElement(
-	            'span',
-	            null,
-	            'Neighborhood: ',
-	            place.neighborhood
-	          ),
-	          _react2.default.createElement('br', null),
-	          _react2.default.createElement(
-	            'span',
-	            null,
-	            'Description: ',
-	            place.description
-	          ),
-	          _react2.default.createElement('br', null),
-	          _react2.default.createElement(
-	            'span',
-	            null,
-	            'Category: ',
-	            place.category.name
-	          ),
-	          _react2.default.createElement('br', null),
-	          _react2.default.createElement('br', null)
-	        );
-	      });
-	      return _react2.default.createElement(
-	        'div',
-	        { className: 'places-box' },
-	        placesNodes
-	      );
-	    }
-	  }]);
-
-	  return PlacesBox;
-	}(_react2.default.Component);
-
 	(0, _jquery2.default)(document).ready(function () {
-	  (0, _reactDom.render)(_react2.default.createElement(PlacesBox, { url: '/api/places', pollInterval: 2000 }), document.getElementById("content"));
+	  (0, _reactDom.render)(_react2.default.createElement(_placesBox2.default, { url: '/api/places', pollInterval: 2000 }), document.getElementById("content"));
 	});
 
 /***/ },
@@ -29598,6 +29505,183 @@
 
 	module.exports = __webpack_require__(4);
 
+
+/***/ },
+/* 160 */
+/***/ function(module, exports, __webpack_require__) {
+
+	'use strict';
+
+	Object.defineProperty(exports, "__esModule", {
+	  value: true
+	});
+
+	var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
+
+	var _jquery = __webpack_require__(1);
+
+	var _jquery2 = _interopRequireDefault(_jquery);
+
+	var _react = __webpack_require__(2);
+
+	var _react2 = _interopRequireDefault(_react);
+
+	var _reactDom = __webpack_require__(159);
+
+	var _reactDom2 = _interopRequireDefault(_reactDom);
+
+	var _place = __webpack_require__(161);
+
+	var _place2 = _interopRequireDefault(_place);
+
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+	function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+	function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
+
+	function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
+
+	var PlacesBox = function (_React$Component) {
+	  _inherits(PlacesBox, _React$Component);
+
+	  function PlacesBox(props) {
+	    _classCallCheck(this, PlacesBox);
+
+	    var _this = _possibleConstructorReturn(this, Object.getPrototypeOf(PlacesBox).call(this, props));
+
+	    _this.state = { data: [] };
+	    return _this;
+	  }
+
+	  _createClass(PlacesBox, [{
+	    key: 'componentDidMount',
+	    value: function componentDidMount() {
+	      this.getPlacesFromServer();
+	      this.interval = setInterval(this.getPlacesFromServer(), this.props.pollInterval);
+	    }
+	  }, {
+	    key: 'getPlacesFromServer',
+	    value: function getPlacesFromServer() {
+	      var _this2 = this;
+
+	      _jquery2.default.ajax({
+	        url: '/api/places',
+	        context: (0, _jquery2.default)("#content"),
+	        success: function success(data) {
+	          _this2.setState({ data: data });
+	        },
+	        error: function error(xhr, status, err) {
+	          console.error(_this2.props.url, status, err.toString());
+	        }
+	      });
+	    }
+	  }, {
+	    key: 'render',
+	    value: function render() {
+	      var placesNodes = this.state.data.map(function (place) {
+	        return _react2.default.createElement(_place2.default, { data: place, key: place.id });
+	      });
+	      return _react2.default.createElement(
+	        'div',
+	        { className: 'places-box' },
+	        placesNodes
+	      );
+	    }
+	  }, {
+	    key: 'componentWillUnmount',
+	    value: function componentWillUnmount() {
+	      clearInterval(this.interval);
+	    }
+	  }]);
+
+	  return PlacesBox;
+	}(_react2.default.Component);
+
+	exports.default = PlacesBox;
+
+/***/ },
+/* 161 */
+/***/ function(module, exports, __webpack_require__) {
+
+	'use strict';
+
+	Object.defineProperty(exports, "__esModule", {
+	  value: true
+	});
+
+	var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
+
+	var _react = __webpack_require__(2);
+
+	var _react2 = _interopRequireDefault(_react);
+
+	var _reactDom = __webpack_require__(159);
+
+	var _reactDom2 = _interopRequireDefault(_reactDom);
+
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+	function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+	function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
+
+	function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
+
+	var Place = function (_React$Component) {
+	  _inherits(Place, _React$Component);
+
+	  function Place(props) {
+	    _classCallCheck(this, Place);
+
+	    var _this = _possibleConstructorReturn(this, Object.getPrototypeOf(Place).call(this, props));
+
+	    _this.state = { data: props.data };
+	    return _this;
+	  }
+
+	  _createClass(Place, [{
+	    key: 'render',
+	    value: function render() {
+	      return _react2.default.createElement(
+	        'article',
+	        { className: 'place' },
+	        _react2.default.createElement(
+	          'h3',
+	          null,
+	          this.state.data.name
+	        ),
+	        _react2.default.createElement('br', null),
+	        _react2.default.createElement(
+	          'span',
+	          null,
+	          'Neighborhood: ',
+	          this.state.data.neighborhood
+	        ),
+	        _react2.default.createElement('br', null),
+	        _react2.default.createElement(
+	          'span',
+	          null,
+	          'Description: ',
+	          this.state.data.description
+	        ),
+	        _react2.default.createElement('br', null),
+	        _react2.default.createElement(
+	          'span',
+	          null,
+	          'Category: ',
+	          this.state.data.category.name
+	        ),
+	        _react2.default.createElement('br', null),
+	        _react2.default.createElement('br', null)
+	      );
+	    }
+	  }]);
+
+	  return Place;
+	}(_react2.default.Component);
+
+	exports.default = Place;
 
 /***/ }
 /******/ ]);
