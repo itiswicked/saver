@@ -29651,7 +29651,6 @@
 	          null,
 	          this.state.data.name
 	        ),
-	        _react2.default.createElement('br', null),
 	        _react2.default.createElement(
 	          'span',
 	          null,

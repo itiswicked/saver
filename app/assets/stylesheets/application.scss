@@ -16,14 +16,29 @@
 
 @import url(https://fonts.googleapis.com/css?family=Raleway:200);
 
+@mixin box-shadow {
+    -webkit-box-shadow: 0px 0px 22px 0px rgba(181,181,181,1);
+    -moz-box-shadow: 0px 0px 22px 0px rgba(181,181,181,1);
+    box-shadow: 0px 0px 22px 0px rgba(181,181,181,1);
+}
+
+@mixin box-shadow-hover {
+  -webkit-box-shadow: 0px 0px 35px 0px rgba(181,181,181,1);
+  -moz-box-shadow: 0px 0px 35px 0px rgba(181,181,181,1);
+  box-shadow: 0px 0px 35px 0px rgba(181,181,181,1);
+}
+
+$blue: #0088FF;
+$text-gray: #333333;
+
 body {
-  color: gray;
+  color: $text-gray;
   font-family: 'Raleway', sans-serif;
 }
 
 .title {
   text-align: center;
-  color: blue;
+  color: $text-gray;
 }
 
 #content {
@@ -32,11 +47,17 @@ body {
 }
 
 h3 {
-  margin: 0 0;
+  margin: 5px 0;
 }
 
 .place {
-  margin: 2px;
-  border: 1px solid gray;
+  &:hover {
+    background-color: #F7F7F7;
+    @include box-shadow-hover;
+    transition: 0.5s ease-in-out;
+  }
+  @include box-shadow;
+  margin: 20px;
   padding: 5px;
+  border-bottom: 2px solid $blue
 }
