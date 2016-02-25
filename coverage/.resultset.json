@@ -23,8 +23,16 @@
         null,
         1,
         null
+      ],
+      "/Users/Nathan/Documents/projects/rails/saver/app/controllers/api/places_controller.rb": [
+        1,
+        1,
+        2,
+        2,
+        null,
+        null
       ]
     },
-    "timestamp": 1455848759
+    "timestamp": 1456364881
   }
 }
