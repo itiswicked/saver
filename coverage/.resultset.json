@@ -1,6 +1,28 @@
 {
   "RSpec": {
     "coverage": {
+      "/Users/Nathan/Documents/projects/rails/saver/spec/features/user_views_places_spec.rb": [
+        1,
+        null,
+        1,
+        null,
+        null,
+        null,
+        2,
+        2,
+        null,
+        1,
+        1,
+        null,
+        1,
+        2,
+        2,
+        2,
+        2,
+        null,
+        null,
+        null
+      ],
       "/Users/Nathan/Documents/projects/rails/saver/app/models/place.rb": [
         1,
         1,
@@ -27,12 +49,12 @@
       "/Users/Nathan/Documents/projects/rails/saver/app/controllers/api/places_controller.rb": [
         1,
         1,
-        2,
-        2,
+        10,
+        10,
         null,
         null
       ]
     },
-    "timestamp": 1456366038
+    "timestamp": 1456981972
   }
 }

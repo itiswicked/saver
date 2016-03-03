@@ -13,6 +13,7 @@ feature 'user views places', js: true do
     [place1, place2].each do |place|
       expect(page).to have_content place.name
       expect(page).to have_content place.neighborhood
+      expect(page).to have_content place.description
       expect(page).to have_content place.category.name
     end
   end
