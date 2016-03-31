@@ -7,7 +7,7 @@ import PlacesBox from './components/placesBox.jsx'
 
 $(document).ready(function() {
   render(
-    <PlacesBox url='/api/places' pollInterval={2000} />,
+    <PlacesBox />,
     document.getElementById("content")
   );
 });

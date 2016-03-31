@@ -3,5 +3,6 @@ Rails.application.routes.draw do
 
   namespace :api do
     resources :places, only: [:index, :create, :update, :destroy]
+    resources :categories, only: [:index]
   end
 end

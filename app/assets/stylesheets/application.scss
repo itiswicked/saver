@@ -19,6 +19,7 @@
 $blue: #08f;
 $text-gray: #333;
 $hover-background-color: #f7f7f7;
+$border-color-gray: #ddd;
 
 $box-shadow: 0 0 22px 0 rgba(181, 181, 181, 1);
 $box-shadow-hover: 0 0 40px 0 rgba(181, 181, 181, 1);
@@ -28,18 +29,44 @@ body {
   font-family: 'Raleway', sans-serif;
 }
 
-.title {
-  text-align: center;
-  color: $text-gray;
+h3 {
+  margin: 5px 0;
 }
 
-#content {
+input[type=text] {
+  font-size: 16px;
+  height: 16px;
+  width: 98%;
+  margin: 2px auto;
+  display: block;
+  &:focus {
+    box-shadow: inset 0px 1px 1px rgba(0, 0, 0, 0.33);
+    width: 394px;
+    height: 18px;
+    border: 1px solid $border-color-gray;
+    outline: none;
+  }
+}
+
+input[type=submit] {
+  height: 30px;
+  width: 398px;
+}
+
+select {
+  width: 398px;
+  border-radius: 0;
+  border-color: $border-color-gray;
+}
+
+#content, #new-place-form {
   width: 450px;
   margin: auto;
 }
 
-h3 {
-  margin: 5px 0;
+.title {
+  text-align: center;
+  color: $text-gray;
 }
 
 .place {
@@ -53,4 +80,12 @@ h3 {
     background-color: $hover-background-color;
     transition: 0.25s ease-in-out;
   }
+}
+
+// FORM
+
+.place-form {
+  box-shadow: $box-shadow;
+  padding: 5px;
+  margin: 20px;
 }
