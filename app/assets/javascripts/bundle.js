@@ -65,7 +65,7 @@
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
 	(0, _jquery2.default)(document).ready(function () {
-	  (0, _reactDom.render)(_react2.default.createElement(_placesBox2.default, { url: '/api/places', pollInterval: 2000 }), document.getElementById("content"));
+	  (0, _reactDom.render)(_react2.default.createElement(_placesBox2.default, null), document.getElementById("content"));
 	});
 
 /***/ },
@@ -29530,9 +29530,13 @@
 
 	var _reactDom2 = _interopRequireDefault(_reactDom);
 
-	var _place = __webpack_require__(161);
+	var _places = __webpack_require__(161);
 
-	var _place2 = _interopRequireDefault(_place);
+	var _places2 = _interopRequireDefault(_places);
+
+	var _placesForm = __webpack_require__(165);
+
+	var _placesForm2 = _interopRequireDefault(_placesForm);
 
 	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
@@ -29548,50 +29552,18 @@
 	  function PlacesBox(props) {
 	    _classCallCheck(this, PlacesBox);
 
-	    var _this = _possibleConstructorReturn(this, Object.getPrototypeOf(PlacesBox).call(this, props));
-
-	    _this.state = { data: [] };
-	    return _this;
+	    return _possibleConstructorReturn(this, Object.getPrototypeOf(PlacesBox).call(this, props));
 	  }
 
 	  _createClass(PlacesBox, [{
-	    key: 'componentDidMount',
-	    value: function componentDidMount() {
-	      this.getPlacesFromServer();
-	      this.interval = setInterval(this.getPlacesFromServer(), this.props.pollInterval);
-	    }
-	  }, {
-	    key: 'getPlacesFromServer',
-	    value: function getPlacesFromServer() {
-	      var _this2 = this;
-
-	      _jquery2.default.ajax({
-	        url: '/api/places',
-	        context: (0, _jquery2.default)("#content"),
-	        success: function success(data) {
-	          _this2.setState({ data: data });
-	        },
-	        error: function error(xhr, status, err) {
-	          console.error(_this2.props.url, status, err.toString());
-	        }
-	      });
-	    }
-	  }, {
 	    key: 'render',
 	    value: function render() {
-	      var placesNodes = this.state.data.map(function (place) {
-	        return _react2.default.createElement(_place2.default, { data: place, key: place.id });
-	      });
 	      return _react2.default.createElement(
 	        'div',
-	        { className: 'places-box' },
-	        placesNodes
+	        null,
+	        _react2.default.createElement(_placesForm2.default, { url: '/api/categories' }),
+	        _react2.default.createElement(_places2.default, { url: '/api/places', pollInterval: 2000 })
 	      );
-	    }
-	  }, {
-	    key: 'componentWillUnmount',
-	    value: function componentWillUnmount() {
-	      clearInterval(this.interval);
 	    }
 	  }]);
 
@@ -29602,6 +29574,179 @@
 
 /***/ },
 /* 161 */
+/***/ function(module, exports, __webpack_require__) {
+
+	'use strict';
+
+	Object.defineProperty(exports, "__esModule", {
+	  value: true
+	});
+
+	var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
+
+	var _jquery = __webpack_require__(1);
+
+	var _jquery2 = _interopRequireDefault(_jquery);
+
+	var _react = __webpack_require__(2);
+
+	var _react2 = _interopRequireDefault(_react);
+
+	var _reactDom = __webpack_require__(159);
+
+	var _reactAddonsCreateFragment = __webpack_require__(162);
+
+	var _reactAddonsCreateFragment2 = _interopRequireDefault(_reactAddonsCreateFragment);
+
+	var _place = __webpack_require__(164);
+
+	var _place2 = _interopRequireDefault(_place);
+
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+	function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+	function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
+
+	function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
+
+	var Places = function (_React$Component) {
+	  _inherits(Places, _React$Component);
+
+	  function Places(props) {
+	    _classCallCheck(this, Places);
+
+	    var _this = _possibleConstructorReturn(this, Object.getPrototypeOf(Places).call(this, props));
+
+	    _this.state = { data: [] };
+	    return _this;
+	  }
+
+	  _createClass(Places, [{
+	    key: 'componentDidMount',
+	    value: function componentDidMount() {
+	      this.getPlacesFromServer();
+	      this.interval = setInterval(this.getPlacesFromServer.bind(this), this.props.pollInterval);
+	    }
+	  }, {
+	    key: 'getPlacesFromServer',
+	    value: function getPlacesFromServer() {
+	      var _this2 = this;
+
+	      _jquery2.default.ajax({
+	        url: this.props.url,
+	        success: function success(data) {
+	          _this2.setState({ data: data });
+	        },
+	        error: function error(xhr, status, err) {
+	          console.error(_this2.props.url, status, err.toString());
+	        }
+	      });
+	    }
+	  }, {
+	    key: 'placeNode',
+	    value: function placeNode(place) {
+	      return _react2.default.createElement(_place2.default, { data: place, key: place.id });
+	    }
+	  }, {
+	    key: 'render',
+	    value: function render() {
+	      return _react2.default.createElement(
+	        'div',
+	        { className: 'places-box' },
+	        this.state.data.map(this.placeNode)
+	      );
+	    }
+	  }, {
+	    key: 'componentWillUnmount',
+	    value: function componentWillUnmount() {
+	      clearInterval(this.interval);
+	    }
+	  }]);
+
+	  return Places;
+	}(_react2.default.Component);
+
+	exports.default = Places;
+
+/***/ },
+/* 162 */
+/***/ function(module, exports, __webpack_require__) {
+
+	module.exports = __webpack_require__(163).create;
+
+/***/ },
+/* 163 */
+/***/ function(module, exports, __webpack_require__) {
+
+	/* WEBPACK VAR INJECTION */(function(process) {/**
+	 * Copyright 2015, Facebook, Inc.
+	 * All rights reserved.
+	 *
+	 * This source code is licensed under the BSD-style license found in the
+	 * LICENSE file in the root directory of this source tree. An additional grant
+	 * of patent rights can be found in the PATENTS file in the same directory.
+	 *
+	 * @providesModule ReactFragment
+	 */
+
+	'use strict';
+
+	var ReactChildren = __webpack_require__(111);
+	var ReactElement = __webpack_require__(43);
+
+	var emptyFunction = __webpack_require__(16);
+	var invariant = __webpack_require__(14);
+	var warning = __webpack_require__(26);
+
+	/**
+	 * We used to allow keyed objects to serve as a collection of ReactElements,
+	 * or nested sets. This allowed us a way to explicitly key a set a fragment of
+	 * components. This is now being replaced with an opaque data structure.
+	 * The upgrade path is to call React.addons.createFragment({ key: value }) to
+	 * create a keyed fragment. The resulting data structure is an array.
+	 */
+
+	var numericPropertyRegex = /^\d+$/;
+
+	var warnedAboutNumeric = false;
+
+	var ReactFragment = {
+	  // Wrap a keyed object in an opaque proxy that warns you if you access any
+	  // of its properties.
+	  create: function (object) {
+	    if (typeof object !== 'object' || !object || Array.isArray(object)) {
+	      process.env.NODE_ENV !== 'production' ? warning(false, 'React.addons.createFragment only accepts a single object. Got: %s', object) : undefined;
+	      return object;
+	    }
+	    if (ReactElement.isValidElement(object)) {
+	      process.env.NODE_ENV !== 'production' ? warning(false, 'React.addons.createFragment does not accept a ReactElement ' + 'without a wrapper object.') : undefined;
+	      return object;
+	    }
+
+	    !(object.nodeType !== 1) ? process.env.NODE_ENV !== 'production' ? invariant(false, 'React.addons.createFragment(...): Encountered an invalid child; DOM ' + 'elements are not valid children of React components.') : invariant(false) : undefined;
+
+	    var result = [];
+
+	    for (var key in object) {
+	      if (process.env.NODE_ENV !== 'production') {
+	        if (!warnedAboutNumeric && numericPropertyRegex.test(key)) {
+	          process.env.NODE_ENV !== 'production' ? warning(false, 'React.addons.createFragment(...): Child objects should have ' + 'non-numeric keys so ordering is preserved.') : undefined;
+	          warnedAboutNumeric = true;
+	        }
+	      }
+	      ReactChildren.mapIntoWithKeyPrefixInternal(object[key], result, key, emptyFunction.thatReturnsArgument);
+	    }
+
+	    return result;
+	  }
+	};
+
+	module.exports = ReactFragment;
+	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(5)))
+
+/***/ },
+/* 164 */
 /***/ function(module, exports, __webpack_require__) {
 
 	'use strict';
@@ -29636,7 +29781,7 @@
 
 	    var _this = _possibleConstructorReturn(this, Object.getPrototypeOf(Place).call(this, props));
 
-	    _this.state = { data: props.data };
+	    _this.state = { place: props.data };
 	    return _this;
 	  }
 
@@ -29647,32 +29792,30 @@
 	        'article',
 	        { className: 'place' },
 	        _react2.default.createElement(
-	          'h3',
-	          null,
-	          this.state.data.name
+	          'h2',
+	          { className: 'place-name' },
+	          this.state.place.name
+	        ),
+	        _react2.default.createElement(
+	          'span',
+	          { className: 'place-category' },
+	          " - " + this.state.place.category.name
 	        ),
 	        _react2.default.createElement(
 	          'span',
 	          null,
-	          'Neighborhood: ',
-	          this.state.data.neighborhood
+	          "\"" + this.state.place.description + "\""
 	        ),
-	        _react2.default.createElement('br', null),
+	        _react2.default.createElement(
+	          'i',
+	          { className: 'material-icons location' },
+	          'location_on'
+	        ),
 	        _react2.default.createElement(
 	          'span',
-	          null,
-	          'Description: ',
-	          this.state.data.description
-	        ),
-	        _react2.default.createElement('br', null),
-	        _react2.default.createElement(
-	          'span',
-	          null,
-	          'Category: ',
-	          this.state.data.category.name
-	        ),
-	        _react2.default.createElement('br', null),
-	        _react2.default.createElement('br', null)
+	          { className: 'place-neighborhood' },
+	          this.state.place.neighborhood
+	        )
 	      );
 	    }
 	  }]);
@@ -29681,6 +29824,220 @@
 	}(_react2.default.Component);
 
 	exports.default = Place;
+
+/***/ },
+/* 165 */
+/***/ function(module, exports, __webpack_require__) {
+
+	'use strict';
+
+	Object.defineProperty(exports, "__esModule", {
+	  value: true
+	});
+
+	var _createClass = function () { function defineProperties(target, props) { for (var i = 0; i < props.length; i++) { var descriptor = props[i]; descriptor.enumerable = descriptor.enumerable || false; descriptor.configurable = true; if ("value" in descriptor) descriptor.writable = true; Object.defineProperty(target, descriptor.key, descriptor); } } return function (Constructor, protoProps, staticProps) { if (protoProps) defineProperties(Constructor.prototype, protoProps); if (staticProps) defineProperties(Constructor, staticProps); return Constructor; }; }();
+
+	var _jquery = __webpack_require__(1);
+
+	var _jquery2 = _interopRequireDefault(_jquery);
+
+	var _react = __webpack_require__(2);
+
+	var _react2 = _interopRequireDefault(_react);
+
+	var _reactDom = __webpack_require__(159);
+
+	var _reactDom2 = _interopRequireDefault(_reactDom);
+
+	function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+	function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
+
+	function _possibleConstructorReturn(self, call) { if (!self) { throw new ReferenceError("this hasn't been initialised - super() hasn't been called"); } return call && (typeof call === "object" || typeof call === "function") ? call : self; }
+
+	function _inherits(subClass, superClass) { if (typeof superClass !== "function" && superClass !== null) { throw new TypeError("Super expression must either be null or a function, not " + typeof superClass); } subClass.prototype = Object.create(superClass && superClass.prototype, { constructor: { value: subClass, enumerable: false, writable: true, configurable: true } }); if (superClass) Object.setPrototypeOf ? Object.setPrototypeOf(subClass, superClass) : subClass.__proto__ = superClass; }
+
+	var PlacesForm = function (_React$Component) {
+	  _inherits(PlacesForm, _React$Component);
+
+	  function PlacesForm(props) {
+	    _classCallCheck(this, PlacesForm);
+
+	    var _this = _possibleConstructorReturn(this, Object.getPrototypeOf(PlacesForm).call(this, props));
+
+	    _this.state = {
+	      categories: [],
+	      name: '',
+	      description: '',
+	      neighborhood: '',
+	      category_id: ''
+	    };
+	    return _this;
+	  }
+
+	  _createClass(PlacesForm, [{
+	    key: 'componentWillMount',
+	    value: function componentWillMount() {
+	      this.getCategoriesFromServer();
+	    }
+	  }, {
+	    key: 'componentDidMount',
+	    value: function componentDidMount() {
+	      (0, _jquery2.default)('#select-dropdown').css('color', '#acacac');
+	      (0, _jquery2.default)('#select-dropdown').change(function () {
+	        var current = (0, _jquery2.default)('#select').val();
+	        if (current != 'default') {
+	          (0, _jquery2.default)('#select-dropdown').css('color', 'black');
+	        } else {
+	          (0, _jquery2.default)('#select-dropdown').css('color', 'gray');
+	        }
+	      });
+	    }
+	  }, {
+	    key: 'getCategoriesFromServer',
+	    value: function getCategoriesFromServer(url) {
+	      var _this2 = this;
+
+	      _jquery2.default.ajax({
+	        url: this.props.url,
+	        success: function success(categories) {
+	          _this2.setState({ categories: categories });
+	        },
+	        error: function error(xhr, status, err) {
+	          console.error(_this2.props.url, status, err.toString());
+	        }
+	      });
+	    }
+	  }, {
+	    key: 'optionsForSelect',
+	    value: function optionsForSelect() {
+	      return this.state.categories.map(this.option);
+	    }
+	  }, {
+	    key: 'option',
+	    value: function option(category) {
+	      return _react2.default.createElement(
+	        'option',
+	        { className: 'option', key: category.id, value: category.id },
+	        category.name
+	      );
+	    }
+	  }, {
+	    key: 'render',
+	    value: function render() {
+	      return _react2.default.createElement(
+	        'div',
+	        { className: 'new-place-form-container' },
+	        _react2.default.createElement(
+	          'form',
+	          { className: 'new-place-form', onSubmit: this.handleSubmit.bind(this) },
+	          _react2.default.createElement('input', {
+	            type: 'text',
+	            placeholder: 'Name',
+	            value: this.state.name,
+	            onChange: this.handleNameChange.bind(this)
+	          }),
+	          _react2.default.createElement('input', {
+	            type: 'text',
+	            placeholder: 'Neighborhood',
+	            value: this.state.neighborhood,
+	            onChange: this.handleNeighborhoodChange.bind(this)
+	          }),
+	          _react2.default.createElement('textarea', {
+	            className: 'description-box',
+	            type: 'text',
+	            placeholder: 'Description',
+	            value: this.state.description,
+	            onChange: this.handleDescriptionChange.bind(this)
+	          }),
+	          _react2.default.createElement(
+	            'select',
+	            {
+	              id: 'select-dropdown',
+	              className: 'select-dropdown',
+	              label: 'select-dropdown',
+	              value: this.state.category_id,
+	              defaultValue: '',
+	              onChange: this.handleCategoryChange.bind(this)
+	            },
+	            _react2.default.createElement(
+	              'option',
+	              {
+	                id: 'default-option',
+	                value: 'default',
+	                disabled: 'disabled'
+	              },
+	              'Select Category...'
+	            ),
+	            this.optionsForSelect()
+	          ),
+	          _react2.default.createElement('input', { type: 'submit', className: 'button add-button', value: 'Create' })
+	        )
+	      );
+	    }
+	  }, {
+	    key: 'handleNameChange',
+	    value: function handleNameChange(e) {
+	      this.setState({ name: e.target.value });
+	    }
+	  }, {
+	    key: 'handleNeighborhoodChange',
+	    value: function handleNeighborhoodChange(e) {
+	      this.setState({ neighborhood: e.target.value });
+	    }
+	  }, {
+	    key: 'handleDescriptionChange',
+	    value: function handleDescriptionChange(e) {
+	      this.setState({ description: e.target.value });
+	    }
+	  }, {
+	    key: 'handleCategoryChange',
+	    value: function handleCategoryChange(e) {
+	      this.setState({ category_id: e.target.value });
+	    }
+	  }, {
+	    key: 'handleSubmit',
+	    value: function handleSubmit(e) {
+	      var _this3 = this;
+
+	      e.preventDefault();
+	      var place_info = {
+	        name: this.state.name,
+	        description: this.state.description,
+	        neighborhood: this.state.neighborhood,
+	        category_id: this.state.category_id
+	      };
+
+	      // validates presense of inputs
+	      for (var prop in place_info) {
+	        if (place_info[prop] === '') {
+	          return;
+	        }
+	      }
+
+	      _jquery2.default.ajax({
+	        url: '/api/places',
+	        method: 'POST',
+	        type: 'application/json',
+	        data: { place: place_info },
+	        error: function error(xhr, status, err) {
+	          console.error(_this3.props.url, status, err.toString());
+	        }
+	      });
+
+	      this.setState({
+	        name: '',
+	        description: '',
+	        neighborhood: '',
+	        category_id: ''
+	      });
+	    }
+	  }]);
+
+	  return PlacesForm;
+	}(_react2.default.Component);
+
+	exports.default = PlacesForm;
 
 /***/ }
 /******/ ]);

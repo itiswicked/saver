@@ -14,18 +14,33 @@
  *= require_self
  */
 
-@import url(https://fonts.googleapis.com/css?family=Raleway:200);
-
+@import url(https://fonts.googleapis.com/css?family=Roboto:400,700);
 $blue: #08f;
-$text-gray: #333;
+$text-gray: #575757;
 $hover-background-color: #f7f7f7;
+$border-color-gray: #bdbdbd;
 
 $box-shadow: 0 0 22px 0 rgba(181, 181, 181, 1);
 $box-shadow-hover: 0 0 40px 0 rgba(181, 181, 181, 1);
 
+$placeholder-font-size: 16px;
+
 body {
   color: $text-gray;
-  font-family: 'Raleway', sans-serif;
+  font-family: 'Roboto', sans-serif;
+}
+
+h3 {
+  margin: 5px 0;
+}
+
+span {
+  display: block;
+}
+
+#content {
+  width: 450px;
+  margin: 20px auto;
 }
 
 .title {
@@ -33,24 +48,104 @@ body {
   color: $text-gray;
 }
 
-#content {
-  width: 450px;
-  margin: auto;
-}
-
-h3 {
-  margin: 5px 0;
-}
-
 .place {
   box-shadow: $box-shadow;
   border-bottom: 2px solid $blue;
-  margin: 20px;
-  padding: 5px;
+  margin: 20px 0;
+  padding: 10px;
+  transition: 0.25s ease-in-out;
 
   &:hover {
     box-shadow: $box-shadow-hover;
-    background-color: $hover-background-color;
-    transition: 0.25s ease-in-out;
   }
+}
+
+.place-name {
+  margin: 5px 0;
+  display: inline;
+}
+
+// FORM
+
+input[type=text], textarea {
+  box-sizing: border-box;
+  display: block;
+  font-size: $placeholder-font-size;
+  width: 100%;
+  border: 1px solid $border-color-gray;
+  margin: 2px auto;
+  box-shadow: inset 0 3px 10px 0px rgba(180, 180, 180, 0.2);
+
+  &:focus {
+    border: 1px solid #4FADFF;
+    outline: none;
+  }
+}
+
+input[type=text] {
+  height: 28px;
+}
+
+.new-place-form-container {
+  box-shadow: $box-shadow;
+  padding: 5px;
+  margin: 20px 0;
+}
+
+.new-place-form {
+  box-sizing: border-box;
+}
+
+.description-box {
+  resize: vertical;
+}
+
+.select-dropdown {
+  -webkit-appearance: none;
+  font-size: $placeholder-font-size;
+  background: url("arrow.svg") no-repeat 99% 85%;
+  height: 29px;
+  overflow: hidden;
+  width: 100%;
+  border: 1px solid $border-color-gray;
+  border-radius: 0;
+
+  &:focus {
+    outline: none;
+  }
+}
+
+.option {
+  color: black;
+}
+
+.add-button {
+  margin-top: 5px;
+}
+
+.button {
+  background-color: $blue;
+  border: none;
+  color: #fff;
+  font-size: 1.2rem;
+  height: 30px;
+  width: 100%;
+  outline: none;
+
+  &:active {
+    background-color: #0076DE;
+    box-shadow: inset 0 0 10px rgba(0,0,0,0.1);
+  }
+}
+
+.place-category {
+  display: inline;
+}
+
+.place-neighborhood {
+  display: inline;
+}
+
+.location {
+  font-size: 1rem;
 }
