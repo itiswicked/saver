@@ -11,13 +11,24 @@ export default class PlacesForm extends React.Component {
       name: '',
       description: '',
       neighborhood: '',
-      category_id: '',
-      defaultValue: 'defaultValue'
+      category_id: ''
     };
   }
 
   componentWillMount() {
     this.getCategoriesFromServer()
+  }
+
+  componentDidMount() {
+    $('#select-dropdown').css('color','#acacac');
+    $('#select-dropdown').change(function() {
+      var current = $('#select').val();
+      if (current != 'default') {
+        $('#select-dropdown').css('color','black');
+      } else {
+        $('#select-dropdown').css('color','gray');
+      }
+   });
   }
 
   getCategoriesFromServer(url) {
@@ -38,15 +49,14 @@ export default class PlacesForm extends React.Component {
 
   option(category) {
     return(
-      <option key={category.id} value={category.id}>{category.name}</option>
+      <option className="option" key={category.id} value={category.id}>{category.name}</option>
     );
   }
 
   render() {
     return(
-      <div className="new-place-form">
-        <h3>Add Place</h3>
-        <form onSubmit={this.handleSubmit.bind(this)}>
+      <div className="new-place-form-container">
+        <form className="new-place-form" onSubmit={this.handleSubmit.bind(this)}>
           <input
             type="text"
             placeholder="Name"
@@ -59,20 +69,31 @@ export default class PlacesForm extends React.Component {
             value={this.state.neighborhood}
             onChange={this.handleNeighborhoodChange.bind(this)}
           />
-          <input
+          <textarea
+            className="description-box"
             type="text"
             placeholder="Description"
             value={this.state.description}
             onChange={this.handleDescriptionChange.bind(this)}
           />
           <select
+            id="select-dropdown"
+            className="select-dropdown"
+            label="select-dropdown"
             value={this.state.category_id}
-            defaultValue={this.state.defaultValue}
-            onChange={this.handleCategoryChange.bind(this)}>
-            <option value="default">Select Category</option>
+            defaultValue=""
+            onChange={this.handleCategoryChange.bind(this)}
+          >
+            <option
+              id="default-option"
+              value="default"
+              disabled="disabled"
+            >
+              Select Category...
+            </option>
             {this.optionsForSelect()}
           </select>
-          <input type="submit" value="Add" />
+          <input type="submit" className="button add-button" value="Create" />
         </form>
       </div>
     );
@@ -122,8 +143,7 @@ export default class PlacesForm extends React.Component {
       name: '',
       description: '',
       neighborhood: '',
-      category_id: '',
-      defaultValue: 'defaultValue'
+      category_id: ''
     });
   }
 

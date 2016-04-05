@@ -29792,32 +29792,30 @@
 	        'article',
 	        { className: 'place' },
 	        _react2.default.createElement(
-	          'h3',
-	          null,
+	          'h2',
+	          { className: 'place-name' },
 	          this.state.place.name
 	        ),
 	        _react2.default.createElement(
 	          'span',
+	          { className: 'place-category' },
+	          " - " + this.state.place.category.name
+	        ),
+	        _react2.default.createElement(
+	          'span',
 	          null,
-	          'Neighborhood: ',
+	          "\"" + this.state.place.description + "\""
+	        ),
+	        _react2.default.createElement(
+	          'i',
+	          { className: 'material-icons location' },
+	          'location_on'
+	        ),
+	        _react2.default.createElement(
+	          'span',
+	          { className: 'place-neighborhood' },
 	          this.state.place.neighborhood
-	        ),
-	        _react2.default.createElement('br', null),
-	        _react2.default.createElement(
-	          'span',
-	          null,
-	          'Description: ',
-	          this.state.place.description
-	        ),
-	        _react2.default.createElement('br', null),
-	        _react2.default.createElement(
-	          'span',
-	          null,
-	          'Category: ',
-	          this.state.place.category.name
-	        ),
-	        _react2.default.createElement('br', null),
-	        _react2.default.createElement('br', null)
+	        )
 	      );
 	    }
 	  }]);
@@ -29872,8 +29870,7 @@
 	      name: '',
 	      description: '',
 	      neighborhood: '',
-	      category_id: '',
-	      defaultValue: 'defaultValue'
+	      category_id: ''
 	    };
 	    return _this;
 	  }
@@ -29882,6 +29879,19 @@
 	    key: 'componentWillMount',
 	    value: function componentWillMount() {
 	      this.getCategoriesFromServer();
+	    }
+	  }, {
+	    key: 'componentDidMount',
+	    value: function componentDidMount() {
+	      (0, _jquery2.default)('#select-dropdown').css('color', '#acacac');
+	      (0, _jquery2.default)('#select-dropdown').change(function () {
+	        var current = (0, _jquery2.default)('#select').val();
+	        if (current != 'default') {
+	          (0, _jquery2.default)('#select-dropdown').css('color', 'black');
+	        } else {
+	          (0, _jquery2.default)('#select-dropdown').css('color', 'gray');
+	        }
+	      });
 	    }
 	  }, {
 	    key: 'getCategoriesFromServer',
@@ -29908,7 +29918,7 @@
 	    value: function option(category) {
 	      return _react2.default.createElement(
 	        'option',
-	        { key: category.id, value: category.id },
+	        { className: 'option', key: category.id, value: category.id },
 	        category.name
 	      );
 	    }
@@ -29917,15 +29927,10 @@
 	    value: function render() {
 	      return _react2.default.createElement(
 	        'div',
-	        { className: 'new-place-form' },
-	        _react2.default.createElement(
-	          'h3',
-	          null,
-	          'Add Place'
-	        ),
+	        { className: 'new-place-form-container' },
 	        _react2.default.createElement(
 	          'form',
-	          { onSubmit: this.handleSubmit.bind(this) },
+	          { className: 'new-place-form', onSubmit: this.handleSubmit.bind(this) },
 	          _react2.default.createElement('input', {
 	            type: 'text',
 	            placeholder: 'Name',
@@ -29938,7 +29943,8 @@
 	            value: this.state.neighborhood,
 	            onChange: this.handleNeighborhoodChange.bind(this)
 	          }),
-	          _react2.default.createElement('input', {
+	          _react2.default.createElement('textarea', {
+	            className: 'description-box',
 	            type: 'text',
 	            placeholder: 'Description',
 	            value: this.state.description,
@@ -29947,17 +29953,25 @@
 	          _react2.default.createElement(
 	            'select',
 	            {
+	              id: 'select-dropdown',
+	              className: 'select-dropdown',
+	              label: 'select-dropdown',
 	              value: this.state.category_id,
-	              defaultValue: this.state.defaultValue,
-	              onChange: this.handleCategoryChange.bind(this) },
+	              defaultValue: '',
+	              onChange: this.handleCategoryChange.bind(this)
+	            },
 	            _react2.default.createElement(
 	              'option',
-	              { value: 'default' },
-	              'Select Category'
+	              {
+	                id: 'default-option',
+	                value: 'default',
+	                disabled: 'disabled'
+	              },
+	              'Select Category...'
 	            ),
 	            this.optionsForSelect()
 	          ),
-	          _react2.default.createElement('input', { type: 'submit', value: 'Add' })
+	          _react2.default.createElement('input', { type: 'submit', className: 'button add-button', value: 'Create' })
 	        )
 	      );
 	    }
@@ -30015,8 +30029,7 @@
 	        name: '',
 	        description: '',
 	        neighborhood: '',
-	        category_id: '',
-	        defaultValue: 'defaultValue'
+	        category_id: ''
 	      });
 	    }
 	  }]);
